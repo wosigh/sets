@@ -12,7 +12,7 @@ function GameAssistant() {
 }
 
 GameAssistant.prototype.display = function() {
-    for(i = 0; i < 12; i++) {
+    for(i = 0; i < 18; i++) {
         if(this.board_cards[i] == null) {
             this.cardElements[i].src = "images/cards/blank.gif";
             this.cardElements[i].style.borderColor = "white";
@@ -30,7 +30,7 @@ GameAssistant.prototype.rand = function(n) {
 }
 
 GameAssistant.prototype.reshuffle = function() {
-    for(i = 0; i < 12; i++) {
+    for(i = 0; i < 18; i++) {
         if(this.board[i] != null)
             this.deck.push(this.board[i].num);
     }
@@ -80,11 +80,11 @@ GameAssistant.prototype.is_set = function(test) {
 }
 
 GameAssistant.prototype.check_for_sets = function() {
-	for(i = 0; i < 12; i++) {
+	for(i = 0; i < 18; i++) {
 		if(this.board_cards[i] == null) continue;
-		for(j = i; j < 12; j++) {
+		for(j = i; j < 18; j++) {
 			if(this.board_cards[j] == null) continue;
-			for(k = j; k < 12; k++) {
+			for(k = j; k < 18; k++) {
 				if(this.board_cards[k] == null) continue;
 				if(this.is_set([this.board_cards[i], this.board_cards[j], this.board_cards[k]]))
 					return;
@@ -110,7 +110,7 @@ GameAssistant.prototype.getTopCard = function() {
 
 GameAssistant.prototype.deal12 = function() {
     this.cards_on_table = 0;
-    for(i = 0; i < 12; i++) {
+    for(i = 0; i < 18; i++) {
         this.board_cards[i] = null;
         this.board_colors[i] = "black";
     }
@@ -170,7 +170,7 @@ GameAssistant.prototype.select = function(event, id) {
 }
 
 GameAssistant.prototype.setup = function() {
-	for (i = 0; i < 12; i++) {
+	for (i = 0; i < 18; i++) {
 		this.cardElements[i] = this.controller.get('card_image' + i);
 		this.controller.listen(this.cardElements[i], Mojo.Event.tap, this.select.bindAsEventListener(this, i));
 	}
