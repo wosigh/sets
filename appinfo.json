@@ -1,12 +1,12 @@
 {
-	"id": "org.webos-internals.sets",
+	"id": "us.ryanhope.sets",
 	"version": "0.1.0",
-	"vendor": "WebOS-Internals",
+	"vendor": "Ryan Hope",
 	"type": "web",
 	"main": "index.html",
 	"title": "SETS",
 	"icon": "icon.png",
-	"copyright": "&copy; Copyright 2010 WebOS-Internals",
+	"copyright": "&copy; Copyright 2010 Ryan Hope",
 	"support": {
     	"url": "http://www.webos-internals.org/wiki/Application:SETS",
 		"email": {
