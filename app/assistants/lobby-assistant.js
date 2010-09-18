@@ -1,7 +1,13 @@
 function LobbyAssistant() {
+	this.menuModel = {
+		visible: true,
+		items: [ { label: "Help", command: 'do-help' } ]
+	}
 }
 
 LobbyAssistant.prototype.setup = function() {
+	
+	this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
 	
 	this.elementNewGame = this.controller.get("buttonNewGame");
 	this.elementRules = this.controller.get("buttonRules");
@@ -53,6 +59,7 @@ LobbyAssistant.prototype.pressedRules = function(event) {
 };
 
 LobbyAssistant.prototype.pressedScoreboard = function(event) {
+	Mojo.Controller.stageController.pushScene("scoreboard");
 };
 
 LobbyAssistant.prototype.activate = function(event) {
@@ -63,3 +70,13 @@ LobbyAssistant.prototype.deactivate = function(event) {
 
 LobbyAssistant.prototype.cleanup = function(event) {
 };
+
+LobbyAssistant.prototype.handleCommand = function(event) {
+	if (event.type == Mojo.Event.command) {
+		switch (event.command) {
+			case 'do-help':
+				this.controller.stageController.pushAppSupportInfoScene();
+				break;				
+		}
+	}
+}

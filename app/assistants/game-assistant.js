@@ -12,9 +12,14 @@ function GameAssistant() {
 	this.timerid = 0;
 	this.timing_data = [];
 	this.tstart = 0;
+	this.menuModel = {
+		visible: true,
+		items: [ { label: "Help", command: 'do-help' } ]
+	}
 }
 
 GameAssistant.prototype.display = function() {
+	this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
     for(i = 0; i < 18; i++) {
         if(this.board_cards[i] == null) {
             this.cardElements[i].src = "images/cards/blank.gif";
@@ -241,3 +246,13 @@ GameAssistant.prototype.deactivate = function(event) {
 GameAssistant.prototype.cleanup = function(event) {
 	this.stop_timer();
 };
+
+GameAssistant.prototype.handleCommand = function(event) {
+	if (event.type == Mojo.Event.command) {
+		switch (event.command) {
+			case 'do-help':
+				this.controller.stageController.pushAppSupportInfoScene();
+				break;				
+		}
+	}
+}
