@@ -1,0 +1,9 @@
+{
+	"id": "org.webos-internals.sets",
+	"version": "0.1.0",
+	"vendor": "WebOS-Internals",
+	"type": "web",
+	"main": "index.html",
+	"title": "SETS",
+	"icon": "icon.png"
+}

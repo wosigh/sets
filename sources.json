@@ -1,0 +1,15 @@
+[
+    {"source": "app/assistants/stage-assistant.js"},
+    {
+        "scenes": "lobby",
+        "source": "app/assistants/lobby-assistant.js"
+    },
+    {
+        "scenes": "game",
+        "source": "app/assistants/game-assistant.js"
+    },
+    {
+        "scenes": "scoreboard",
+        "source": "app/assistants/scoreboard-assistant.js"
+    }
+]
