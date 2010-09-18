@@ -192,7 +192,6 @@ GameAssistant.prototype.stop_timer = function() {
 }
 
 GameAssistant.prototype.timer = function() {
-	alert("########################### TIMER ###############################");
 	if (!this.tstart) {
 		this.tstart = new Date();
 		//ajax_init();
