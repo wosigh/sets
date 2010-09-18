@@ -6,6 +6,7 @@
 	"main": "index.html",
 	"title": "SETS",
 	"icon": "icon.png",
+	"miniicon": "miniicon.png",
 	"copyright": "&copy; Copyright 2010 Ryan Hope",
 	"support": {
     	"url": "http://www.webos-internals.org/wiki/Application:SETS",
