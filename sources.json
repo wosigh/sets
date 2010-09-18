@@ -11,5 +11,9 @@
     {
         "scenes": "scoreboard",
         "source": "app/assistants/scoreboard-assistant.js"
+    },
+    {
+        "scenes": "rules",
+        "source": "app/assistants/rules-assistant.js"
     }
 ]

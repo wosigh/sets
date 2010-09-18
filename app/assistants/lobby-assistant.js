@@ -49,6 +49,7 @@ LobbyAssistant.prototype.pressedNewGame = function(event) {
 };
 
 LobbyAssistant.prototype.pressedRules = function(event) {
+	Mojo.Controller.stageController.pushScene("rules");
 };
 
 LobbyAssistant.prototype.pressedScoreboard = function(event) {
