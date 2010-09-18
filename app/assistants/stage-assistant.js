@@ -2,5 +2,5 @@ function StageAssistant() {
 }
 
 StageAssistant.prototype.setup = function() {
-	Mojo.Controller.stageController.pushScene ("game");
+	Mojo.Controller.stageController.pushScene("lobby");
 };

@@ -239,4 +239,5 @@ GameAssistant.prototype.deactivate = function(event) {
 };
 
 GameAssistant.prototype.cleanup = function(event) {
+	this.stop_timer();
 };
