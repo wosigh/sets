@@ -20,7 +20,7 @@ GameAssistant.prototype.display = function() {
         else {
             this.cardElements[i].src = "images/cards/" + this.board_cards[i] + ".gif";
             this.cardElements[i].style.borderColor = this.board_colors[i];
-			//this.cardElements[i].addEventListener('mousedown', this.select(i), false);
+			this.controller.listen(this.cardElements[i], Mojo.Event.tap, this.select.bindAsEventListener(this, i));
         }
     }
 }
@@ -129,9 +129,13 @@ GameAssistant.prototype.shuffle = function(cards) {
     return cards;
 }
 
-GameAssistant.prototype.select = function(id) {
+GameAssistant.prototype.select = function(event, id) {
+	alert("####################################################################################");
+	alert("SELECT! " + id);
+	alert("####################################################################################");
 	if(this.board_cards[id] == null)
 		return;
+	// Deselect
 	for(i = 0; i < this.selected_i.length; i++) {
 		if(id == this.selected_i[i]) {
 			for(j = i; j < this.selected_i.length - 1; j++) {
@@ -145,6 +149,7 @@ GameAssistant.prototype.select = function(id) {
 			return;
 		}
 	}
+	// Select
 	this.selected_i.push(id);
 	this.board_colors[id] = "yellow";
 	this.selected.push(this.board_cards[id]);
@@ -169,15 +174,15 @@ GameAssistant.prototype.select = function(id) {
 }
 
 GameAssistant.prototype.setup = function() {
+	for (i = 0; i < 18; i++) {
+		this.cardElements[i] = this.controller.get('card_image' + i);
+	}
 	for(i = 1; i <= this.DECK_SIZE; i++) {
 		this.deck[i-1] = i;
 	}
 	this.deck = this.shuffle(this.deck);
 	this.deal12();
 	this.check_for_sets();
-	for (i = 0; i < 18; i++) {
-		this.cardElements[i] = document.getElementById('card_image' + i);
-	}
 	this.display();
 };
 
