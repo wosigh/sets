@@ -1,1 +1,6 @@
-/* TODO: put your application-specific CSS here */
+.background {
+	padding: 0px;
+	margin: 0px;
+	height:480px;	
+	background: url(../images/background.png) center center no-repeat;
+}
