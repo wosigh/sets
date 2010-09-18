@@ -9,6 +9,9 @@ function GameAssistant() {
 	this.game_over = false;
 	this.sets_found = 0;
 	this.cardElements = [];
+	this.timerid = 0;
+	this.timing_data = [];
+	this.tstart = 0;
 }
 
 GameAssistant.prototype.display = function() {
@@ -151,7 +154,7 @@ GameAssistant.prototype.select = function(event, id) {
 	this.selected.push(this.board_cards[id]);
 	if(this.selected.length == 3) {
 		if(this.is_set(this.selected)) {
-			//this.timing_data_add(this.selected);
+			this.timing_data_add(this.selected);
             this.sets_found++;
 			for(i = 0; i < 3; i++) {
 				this.board_cards[this.selected_i[i]] = null;
@@ -169,6 +172,51 @@ GameAssistant.prototype.select = function(event, id) {
 	this.display();
 }
 
+GameAssistant.prototype.pad = function(i) {
+	if(i < 10) return "0" + i;
+	else return i;
+}
+ 
+GameAssistant.prototype.start_timer = function() {
+	var self = this;
+    this.timerid = setInterval(function() { self.timer(); }, 100);
+}
+ 
+GameAssistant.prototype.stop_timer = function() {
+    clearInterval(this.timerid);
+}
+
+GameAssistant.prototype.timer = function() {
+	alert("########################### TIMER ###############################");
+	if (!this.tstart) {
+		this.tstart = new Date();
+		//ajax_init();
+	}
+	this.tdate = new Date();
+	tdiff = this.tdate.getTime() - this.tstart.getTime();
+    this.tdate.setTime(tdiff);
+    this.controller.get('timer').innerHTML =
+		"<b>" + 
+		this.pad(this.tdate.getMinutes()) + ":" +
+		this.pad(this.tdate.getSeconds()) + "." +
+		parseInt(this.tdate.getMilliseconds()/100) +
+		"</b>";
+    if(this.game_over) {
+        this.stop_timer();
+        //document.form.time.value = tdiff;
+        //ajax_check_hs(tdiff);
+	}
+}
+ 
+GameAssistant.prototype.numerical = function(a,b) {
+	return a - b;
+}
+ 
+GameAssistant.prototype.timing_data_add = function(selected) {
+	this.tdate = (new Date()).getTime() - this.tstart.getTime();
+	this.timing_data.push({'s' : selected.sort(this.numerical), 't' : this.tdate});
+}
+
 GameAssistant.prototype.setup = function() {
 	for (i = 0; i < 18; i++) {
 		this.cardElements[i] = this.controller.get('card_image' + i);
@@ -181,6 +229,7 @@ GameAssistant.prototype.setup = function() {
 	this.deal12();
 	this.check_for_sets();
 	this.display();
+	this.start_timer();
 };
 
 GameAssistant.prototype.activate = function(event) {
