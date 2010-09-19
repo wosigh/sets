@@ -7,6 +7,20 @@ function ScoreboardAssistant() {
 
 ScoreboardAssistant.prototype.setup = function() {
 	this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
+	
+	this.controller.setupWidget("highscores",
+        this.attributes = {
+            itemTemplate: "scoreboard/highscore-row",
+            swipeToDelete: false,
+            renderLimit: 10,
+            reorderable: false
+        },
+        this.model = {
+			listTitle: "Scoreboard",
+            items: prefs.get().scores
+        }
+    );
+	
 };
 
 ScoreboardAssistant.prototype.activate = function(event) {

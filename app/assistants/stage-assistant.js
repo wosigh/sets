@@ -1,3 +1,5 @@
+var prefs =	new preferenceCookie();
+
 function StageAssistant() {
 }
 

@@ -1,4 +1,5 @@
 [
+	{"source": "app/models/cookie.js"},
     {"source": "app/assistants/stage-assistant.js"},
     {
         "scenes": "lobby",
