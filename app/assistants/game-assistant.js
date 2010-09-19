@@ -31,6 +31,7 @@ GameAssistant.prototype.display = function() {
         }
     }
 	document.getElementById("setsfound").innerHTML = "sets found: " + this.sets_found + "</b>";
+	document.getElementById("deck").innerHTML = "remaining cards: " + this.deck.length + "</b>";
 }
 
 GameAssistant.prototype.rand = function(n) {
@@ -207,6 +208,7 @@ GameAssistant.prototype.timer = function() {
 		"</b>";
     if(this.game_over) {
         this.stop_timer();
+		Mojo.Controller.errorDialog("GAME OVER!");
         //document.form.time.value = tdiff;
         //ajax_check_hs(tdiff);
 	}
